@@ -1,0 +1,397 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #f1f0ff;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: #1a1a2e;
+  --secondary-foreground: #a89fcc;
+  --accent: #06b6d4;
+  --accent-foreground: #ffffff;
+  --muted: #16162a;
+  --muted-foreground: #6b6b8a;
+  --card: #12121f;
+  --card-foreground: #f1f0ff;
+  --border: #2a2a45;
+  --input: #1e1e35;
+  --ring: #7c3aed;
+  --radius: 0.75rem;
+  --font-sans: "Manrope", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --neon-violet: #9f67ff;
+  --neon-cyan: #22d3ee;
+  --neon-pink: #f472b6;
+  --neon-green: #34d399;
+  --neon-amber: #fbbf24;
+
+  --glass-bg: rgba(18, 18, 31, 0.7);
+  --glass-border: rgba(124, 58, 237, 0.2);
+  --glass-blur: blur(20px);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+}
+
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .text-gradient-violet {
+    background: linear-gradient(135deg, #9f67ff 0%, #7c3aed 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-cyan {
+    background: linear-gradient(135deg, #06b6d4 0%, #9f67ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .glass-card-hover:hover {
+    border-color: rgba(124, 58, 237, 0.5);
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .neon-glow-violet {
+    box-shadow:
+      0 0 20px rgba(124, 58, 237, 0.4),
+      0 0 60px rgba(124, 58, 237, 0.1);
+  }
+
+  .neon-glow-cyan {
+    box-shadow:
+      0 0 20px rgba(6, 182, 212, 0.4),
+      0 0 60px rgba(6, 182, 212, 0.1);
+  }
+
+  .neon-border-violet {
+    border-color: rgba(124, 58, 237, 0.6);
+    box-shadow:
+      0 0 15px rgba(124, 58, 237, 0.2),
+      inset 0 0 15px rgba(124, 58, 237, 0.05);
+  }
+
+  .gradient-mesh-bg {
+    background:
+      radial-gradient(
+        ellipse 80% 50% at 20% 20%,
+        rgba(124, 58, 237, 0.15) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 80% 80%,
+        rgba(6, 182, 212, 0.1) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 40% 60% at 50% 50%,
+        rgba(159, 103, 255, 0.05) 0%,
+        transparent 70%
+      ),
+      var(--background);
+  }
+
+  .animated-border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animated-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(124, 58, 237, 0.8),
+      rgba(6, 182, 212, 0.8),
+      transparent
+    );
+    animation: border-sweep 3s linear infinite;
+    z-index: -1;
+  }
+
+  @keyframes border-sweep {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 2s ease-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  .glow-text-violet {
+    text-shadow:
+      0 0 20px rgba(159, 103, 255, 0.5),
+      0 0 40px rgba(124, 58, 237, 0.3);
+  }
+
+  .glow-text-cyan {
+    text-shadow:
+      0 0 20px rgba(6, 182, 212, 0.5),
+      0 0 40px rgba(6, 182, 212, 0.3);
+  }
+
+  .streak-cell-active {
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    border-radius: 3px;
+  }
+
+  .streak-cell-partial {
+    background: rgba(124, 58, 237, 0.4);
+    border-radius: 3px;
+  }
+
+  .streak-cell-empty {
+    background: rgba(42, 42, 69, 0.5);
+    border-radius: 3px;
+  }
+
+  .xp-bar-fill {
+    background: linear-gradient(90deg, #7c3aed, #06b6d4, #9f67ff);
+    background-size: 200% 100%;
+    animation: xp-shimmer 2s linear infinite;
+  }
+
+  @keyframes xp-shimmer {
+    0% {
+      background-position: 200% center;
+    }
+    100% {
+      background-position: -200% center;
+    }
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-float linear infinite;
+  }
+
+  @keyframes particle-float {
+    0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  .typing-cursor::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+    color: var(--neon-violet);
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(124, 58, 237, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer-sweep 1.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer-sweep {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .tab-active {
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.3),
+      rgba(6, 182, 212, 0.15)
+    );
+    border-color: rgba(124, 58, 237, 0.5);
+  }
+
+  .progress-track {
+    background: rgba(42, 42, 69, 0.8);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .node-completed {
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.5);
+  }
+
+  .node-available {
+    background: rgba(124, 58, 237, 0.2);
+    border: 1px solid rgba(124, 58, 237, 0.5);
+  }
+
+  .node-locked {
+    background: rgba(42, 42, 69, 0.5);
+    border: 1px solid rgba(42, 42, 69, 0.8);
+  }
+
+  .hero-grid-pattern {
+    background-image:
+      linear-gradient(rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .badge-legendary {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+  }
+
+  .badge-epic {
+    background: linear-gradient(135deg, #9f67ff, #7c3aed);
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+  }
+
+  .badge-rare {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+  }
+
+  .badge-common {
+    background: linear-gradient(135deg, #34d399, #059669);
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+  }
+
+  .sidebar-item-active {
+    background: linear-gradient(
+      90deg,
+      rgba(124, 58, 237, 0.25),
+      rgba(6, 182, 212, 0.1)
+    );
+    border-left: 2px solid var(--primary);
+  }
+
+  .mentor-bubble {
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.9),
+      rgba(6, 182, 212, 0.7)
+    );
+    box-shadow:
+      0 8px 32px rgba(124, 58, 237, 0.4),
+      0 0 0 1px rgba(124, 58, 237, 0.2);
+  }
+}

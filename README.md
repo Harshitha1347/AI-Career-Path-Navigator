@@ -1,4 +1,5 @@
 # AI-Career-Path-Navigator
+<<<<<<< HEAD
 
 An AI-powered career guidance platform designed to help students discover suitable career paths, identify skill gaps, and create personalized learning roadmaps.
 
@@ -53,3 +54,6 @@ Skill-Gap Analysis
 Personalized Roadmap
      ↓
 Learning & Progress Tracking
+=======
+AI-powered career guidance platform that generates personalized learning roadmaps, recommends skills and projects, and tracks learning progress using Google Gemini AI
+>>>>>>> origin/main
